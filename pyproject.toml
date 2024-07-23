@@ -105,7 +105,7 @@ classifiers = [  # Optional
 # For an analysis of this field vs pip's requirements files see:
 # https://packaging.python.org/discussions/install-requires-vs-requirements/
 dependencies = [ 
-  "fastapi==0.109.0",
+  "fastapi==0.109.1",
   "uvicorn==0.25.0",
   "pydantic==1.10.8",
   "presidio-analyzer==2.2.351",
