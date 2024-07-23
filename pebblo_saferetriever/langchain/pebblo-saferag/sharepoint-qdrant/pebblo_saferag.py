@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from typing import Optional, List
+from typing import List, Optional
 
 from dotenv import load_dotenv
 
@@ -18,7 +18,7 @@ from langchain_community.vectorstores.qdrant import Qdrant
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_openai.llms import OpenAI
 from msgraph_api_auth import SharepointADHelper
-from utils import get_input_as_list, obfuscate, format_text
+from utils import format_text, get_input_as_list, obfuscate
 
 
 class PebbloSafeRAG:
@@ -27,12 +27,15 @@ class PebbloSafeRAG:
     for Identity enforcement using Qdrant VectorDB
     """
 
-    def __init__(self, drive_id: str, folder_path: str, collection_name: str):
+    def __init__(
+        self, drive_id: str, folder_path: str, folder_url: str, collection_name: str
+    ):
         self.loader_app_name = "pebblo-identity-loader"
         self.retrieval_app_name = "pebblo-identity-retriever"
         self.collection_name = collection_name
         self.drive_id = drive_id
         self.folder_path = folder_path
+        self.folder_url = folder_url
 
         # Load documents
         print("\nLoading RAG documents ...")
@@ -50,6 +53,7 @@ class PebbloSafeRAG:
             owner="Joe Smith",  # Owner (Optional)
             description="Identity enabled SafeLoader and SafeRetrival app using Pebblo",  # Description (Optional)
             load_semantic=True,
+            folder_url=self.folder_url,
         )
         self.documents = self.loader.load()
         print(self.documents[-1].metadata.get("authorized_identities"))
@@ -211,11 +215,15 @@ if __name__ == "__main__":
     # Enter Folder path
     folder_path = input("\nEnter folder path (default='/document'): ") or "/document"
 
+    # Get Folder URL
+    folder_url = sharepoint_helper.get_folder_web_url(drive_id, folder_path)
+
     # Initialize PebbloSafeRAG app
     rag_app = PebbloSafeRAG(
         drive_id=drive_id,
         folder_path=folder_path,
         collection_name=input_collection_name,
+        folder_url=folder_url,
     )
 
     while True:
@@ -225,7 +233,7 @@ if __name__ == "__main__":
         def_topics = None  # ["employee-agreement"]
         topic_to_deny = (
             get_input_as_list(
-                f"Enter topics to deny (Optional, comma separated, no quotes needed): "
+                "Enter topics to deny (Optional, comma separated, no quotes needed): "
             )
             or def_topics
         )
@@ -233,7 +241,7 @@ if __name__ == "__main__":
         def_entities = None
         entity_to_deny = (
             get_input_as_list(
-                f"Enter entities to deny (Optional, comma separated, no quotes needed): "
+                "Enter entities to deny (Optional, comma separated, no quotes needed): "
             )
             or def_entities
         )

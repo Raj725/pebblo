@@ -1,25 +1,26 @@
 import logging
 from pathlib import Path
-from typing import Optional, List
+from typing import List, Optional
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
 import os
-from msgraph_api_auth import SharepointADHelper
+
 from langchain_community.chains import PebbloRetrievalQA
 from langchain_community.chains.pebblo_retrieval.models import (
     AuthContext,
     ChainInput,
     SemanticContext,
 )
-from langchain_community.document_loaders.pebblo import PebbloSafeLoader
 from langchain_community.document_loaders import SharePointLoader
+from langchain_community.document_loaders.pebblo import PebbloSafeLoader
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_openai.llms import OpenAI
 from langchain_postgres import PGVector
-from utils import get_input_as_list, obfuscate, format_text
+from msgraph_api_auth import SharepointADHelper
+from utils import format_text, get_input_as_list, obfuscate
 
 PEBBLO_API_KEY = os.getenv("PEBBLO_API_KEY")
 PEBBLO_CLOUD_URL = os.getenv("PEBBLO_CLOUD_URL")
@@ -35,12 +36,15 @@ class PebbloSafeRAG:
     using SharePointLoader and PostgreSQL VectorDB
     """
 
-    def __init__(self, drive_id: str, folder_path: str, collection_name: str):
+    def __init__(
+        self, drive_id: str, folder_path: str, folder_url: str, collection_name: str
+    ):
         self.loader_app_name = "pebblo-safe-loader"
         self.retrieval_app_name = "pebblo-safe-retriever"
         self.collection_name = collection_name
         self.drive_id = drive_id
         self.folder_path = folder_path
+        self.folder_url = folder_url
 
         print(120 * "-")
         # Load documents
@@ -60,6 +64,7 @@ class PebbloSafeRAG:
             description="Identity & Semantic enabled SafeLoader and SafeRetrival app using Pebblo",  # Description (Optional)
             load_semantic=True,
             api_key=PEBBLO_API_KEY,
+            folder_url=self.folder_url,
         )
         self.documents = self.loader.load()
         unique_identities = set()
@@ -240,11 +245,15 @@ if __name__ == "__main__":
     # Enter Folder path
     folder_path = input("\nEnter folder path (default='/document'): ") or "/document"
 
+    # Get Folder URL
+    folder_url = sharepoint_helper.get_folder_web_url(drive_id, folder_path)
+
     # Initialize PebbloSafeRAG app
     rag_app = PebbloSafeRAG(
         drive_id=drive_id,
         folder_path=folder_path,
         collection_name=input_collection_name,
+        folder_url=folder_url,
     )
 
     while True:
@@ -254,7 +263,7 @@ if __name__ == "__main__":
         def_topics = None  # ["employee-agreement"]
         topic_to_deny = (
             get_input_as_list(
-                f"Enter topics to deny (Optional, comma separated, no quotes needed): "
+                "Enter topics to deny (Optional, comma separated, no quotes needed): "
             )
             or def_topics
         )
@@ -262,7 +271,7 @@ if __name__ == "__main__":
         def_entities = None
         entity_to_deny = (
             get_input_as_list(
-                f"Enter entities to deny (Optional, comma separated, no quotes needed): "
+                "Enter entities to deny (Optional, comma separated, no quotes needed): "
             )
             or def_entities
         )

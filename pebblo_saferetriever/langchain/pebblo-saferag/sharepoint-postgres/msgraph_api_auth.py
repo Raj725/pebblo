@@ -209,6 +209,35 @@ class SharepointADHelper:
             )
             return []
 
+    def get_folder_web_url(self, drive_id: str, folder_path: str) -> str:
+        """
+        This function retrieves webURL for given folder path in a drive.
+
+        Parameters:
+        drive_id (str): The ID of the drive.
+        folder_path (str): The path of the folder.
+
+        Returns:
+        str: WebURL for given folder path
+        """
+        try:
+            folder_path_url = f"https://graph.microsoft.com/v1.0/drives/{drive_id}/root"
+            if "/" == folder_path[0]:
+                folder_path = folder_path[1:]
+                folder_path_url = folder_path_url + f":/{folder_path}"
+            contents_response = requests.get(
+                folder_path_url,
+                headers={"Authorization": f"Bearer {self.access_token}"},
+            )
+            folder_contents = contents_response.json()
+            folder_url = folder_contents.get("webUrl")
+            return folder_url
+        except requests.exceptions.HTTPError as e:
+            print(
+                f"Error while retrieving folder WebURL from Microsoft Graph API, Error: {e}"
+            )
+            return ""
+
 
 if __name__ == "__main__":
     pass
