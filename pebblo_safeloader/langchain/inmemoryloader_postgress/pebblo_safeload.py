@@ -2,11 +2,10 @@ import logging
 import os
 
 from dotenv import load_dotenv
+from InMemoryLoader import InMemoryLoader
 from langchain_community.document_loaders.pebblo import PebbloSafeLoader
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_postgres import PGVector
-
-from InMemoryLoader import InMemoryLoader
 from util import get_data
 
 PEBBLO_API_KEY = os.getenv("PEBBLO_API_KEY")

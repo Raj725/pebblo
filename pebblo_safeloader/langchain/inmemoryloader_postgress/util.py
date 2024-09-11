@@ -1,5 +1,5 @@
 from hashlib import md5
-from typing import Optional, Any
+from typing import Any, Optional
 
 
 def get_data(
