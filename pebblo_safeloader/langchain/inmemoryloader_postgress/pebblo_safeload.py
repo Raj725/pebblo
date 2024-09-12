@@ -3,8 +3,8 @@ import os
 
 from dotenv import load_dotenv
 from langchain_community.document_loaders.pebblo import (
-    PebbloSafeLoader,
     PebbloInMemoryLoader,
+    PebbloSafeLoader,
 )
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_postgres import PGVector
