@@ -2,11 +2,15 @@ import logging
 import os
 
 from dotenv import load_dotenv
-from InMemoryLoader import InMemoryLoader
-from langchain_community.document_loaders.pebblo import PebbloSafeLoader
+from langchain_community.document_loaders.pebblo import (
+    PebbloSafeLoader,
+    PebbloInMemoryLoader,
+)
 from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain_postgres import PGVector
 from util import get_data
+
+load_dotenv()
 
 PEBBLO_API_KEY = os.getenv("PEBBLO_API_KEY")
 PEBBLO_CLOUD_URL = os.getenv("PEBBLO_CLOUD_URL")
@@ -14,7 +18,6 @@ PG_CONNECTION_STRING = os.getenv("PG_CONNECTION_STRING")
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-load_dotenv()
 
 
 class PebbloSafeRAG:
@@ -34,7 +37,7 @@ class PebbloSafeRAG:
             metadata=True, ids=True, metadatas=True
         )
         self.loader = PebbloSafeLoader(
-            InMemoryLoader(
+            PebbloInMemoryLoader(
                 texts=texts,
                 metadata=metadata,
                 metadatas=metadatas,

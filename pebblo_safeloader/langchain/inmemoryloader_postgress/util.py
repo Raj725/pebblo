@@ -1,4 +1,4 @@
-from hashlib import md5
+from hashlib import sha256
 from typing import Any, Optional
 
 
@@ -47,8 +47,8 @@ def get_data(
         _metadata_list = None
 
     if ids:
-        # Unique ids for each text using the md5 algorithm
-        _ids = [md5(text.encode()).hexdigest() for text in texts]
+        # Unique ids for each text (sha256 hash of text)
+        _ids = [sha256(text.encode()).hexdigest() for text in texts]
     else:
         _ids = None
     return texts, _metadata, _metadata_list, _ids
