@@ -2,7 +2,6 @@ input_text1 = """
 Sachin's SSN is 222-85-4836.
 ITIN number 993-77 0690
 His AWS Access Key is: AKIAQIPT4PDORIRTV6PH.
-And Github Token is: ghp_hgu657yiujgwfrtigu3ver238765tyuhygvtrder6t7gyvhbuy5e676578976tyghy76578uygfyfgcyturtdf
 """
 
 input_text2 = """
@@ -19,11 +18,9 @@ ITIN number 993-77 0690.
 Azure client secret : c4cb6f91-15a7-4e6d-a824-abcdef012345.  
 AWS Access Key is: AKIAQIPT4PDORIRTV6PH 
 AWS Secret Key is : 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 
-Github Token is: ghp_hgu657yiujgwfrtigu3ver238765tyuhygvtrder6t7gyvhbuy5e676578976tyghy76578uygfyfgcyturtdf 
 Google API key: zaCELgL0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx 
 Slack Token is: xoxp-7676545380258-uygh 
 Azure Client Secret - c4cb6f91-15a7-4e6d-a824-abcdef012345 
-Slack Token - xoxb-3204014939555-4519358291237-TTIf0243T8YFSAGEVr1wBrWE 
 Google API key- KLzaSyB_tWrbmfWx8g2bzL7Vhq7znuTUn0JPKmY"
 My IP Address - 10.55.60.61 
 """
