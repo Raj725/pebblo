@@ -200,7 +200,7 @@ class EntityClassifier:
 
         input_text = " My SSN is 222-85-4836.
         ITIN number 993-77 0690
-        And AWS Access Key is: AKIAQIPT4PDORIRTV6PH."
+        And AWS Access Key is: AKIAQIPT4PDORIRTV6PH." # NOSONAR
         response:
         entities = {'aws-access-key': 1, 'us-itin': 1, 'us-ssn': 1}
         total_count = 3
