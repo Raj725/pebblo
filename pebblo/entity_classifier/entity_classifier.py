@@ -207,7 +207,7 @@ class EntityClassifier:
         anonymized_text = "My SSN is &lt;US_SSN&gt;.
         ITIN number &lt;US_ITIN&gt;
         And AWS Access Key is: &lt;AWS_ACCESS_KEY&gt;."
-        """
+        """  #NOSONAR
         entities = {}
         total_count = 0
         try:
