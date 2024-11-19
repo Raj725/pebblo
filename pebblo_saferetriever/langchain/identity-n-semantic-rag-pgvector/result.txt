@@ -1,0 +1,79 @@
+/Users/rajendrakadam/PycharmProjects/CD-Projects/pebblo/env/bin/bin/python /Users/rajendrakadam/PycharmProjects/CD-Projects/pebblo/pebblo_saferetriever/langchain/identity-n-semantic-rag-pgvector/pgvector_retriever_only.py
+/Users/rajendrakadam/PycharmProjects/CD-Projects/pebblo/env/bin/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/rajendrakadam/PycharmProjects/CD-Projects/pebblo/env/bin/lib/python3.9/site-packages/langchain_core/_api/deprecation.py:119: LangChainPendingDeprecationWarning: This class is pending deprecation and may be removed in a future version. You can swap to using the `PGVector` implementation in `langchain_postgres`. Please read the guidelines in the doc-string of this class to follow prior to migrating as there are some differences between the implementations. See https://github.com/langchain-ai/langchain-postgres for details aboutthe new implementation.
+  warn_deprecated(
+------------------------------------------------------------------------------------------------------------------------
+Query String: sell
+Filter Criteria: {'topic': {'$in': ['food']}}
+Results: 6 documents found....
+page_content='the market also sells fresh oranges' metadata={'id': 4, 'location': 'market', 'topic': 'food', 'topics': ['market', 'food']}
+page_content='the market also sells fresh oranges' metadata={'id': 4, 'location': 'market', 'topic': 'food', 'topics': ['market', 'food']}
+page_content='fresh apples are available at the market' metadata={'id': 3, 'location': 'market', 'topic': 'food', 'topics': ['market', 'food']}
+page_content='fresh apples are available at the market' metadata={'id': 3, 'location': 'market', 'topic': 'food', 'topics': ['market', 'food']}
+page_content='a new coffee shop opened on Main Street' metadata={'id': 7, 'location': 'Main Street', 'topic': 'food', 'topics': ['Main Street', 'food']}
+page_content='a new coffee shop opened on Main Street' metadata={'id': 7, 'location': 'Main Street', 'topic': 'food', 'topics': ['Main Street', 'food']}
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Query String: sell
+Filter Criteria: {'topics': {'$in': ['food']}}
+Results: 0 documents found....
+No matching documents found....
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Error: Neither 'BinaryExpression' object nor 'Comparator' object has an attribute 'nin_'
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Error: (psycopg2.errors.UndefinedFunction) function jsonb_path_match(json, unknown, unknown) does not exist
+LINE 3: ...64c0-e7d7-4b38-a519-8d579208b620'::uuid::UUID AND jsonb_path...
+                                                             ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: SELECT langchain_pg_embedding.collection_id AS langchain_pg_embedding_collection_id, langchain_pg_embedding.embedding AS langchain_pg_embedding_embedding, langchain_pg_embedding.document AS langchain_pg_embedding_document, langchain_pg_embedding.cmetadata AS langchain_pg_embedding_cmetadata, langchain_pg_embedding.custom_id AS langchain_pg_embedding_custom_id, langchain_pg_embedding.uuid AS langchain_pg_embedding_uuid, langchain_pg_embedding.embedding <=> %(embedding_1)s AS distance
+FROM langchain_pg_embedding JOIN langchain_pg_collection ON langchain_pg_embedding.collection_id = langchain_pg_collection.uuid
+WHERE langchain_pg_embedding.collection_id = %(collection_id_1)s::UUID AND jsonb_path_match(langchain_pg_embedding.cmetadata, %(jsonb_path_match_1)s, %(jsonb_path_match_2)s) ORDER BY distance ASC
+ LIMIT %(param_1)s]
+[parameters: {'embedding_1': '[-0.008502459537737346,-0.018927092377341477,0.008874266768663075,-0.01648579059256328,-0.029127236444038022,0.0243288188418742,-0.034767480192517054 ... (32606 characters truncated) ... .03030579528405335,-0.026784150069013635,0.008811129621424931,0.0066890223304115325,-0.014577648595702764,0.004103909913866758,-0.013770896986613164]', 'collection_id_1': UUID('0b9464c0-e7d7-4b38-a519-8d579208b620'), 'jsonb_path_match_1': '$.topics == $value', 'jsonb_path_match_2': '{"value": ["food"]}', 'param_1': 10}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Error: (psycopg2.errors.UndefinedFunction) function jsonb_path_match(json, unknown, unknown) does not exist
+LINE 3: ...64c0-e7d7-4b38-a519-8d579208b620'::uuid::UUID AND jsonb_path...
+                                                             ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: SELECT langchain_pg_embedding.collection_id AS langchain_pg_embedding_collection_id, langchain_pg_embedding.embedding AS langchain_pg_embedding_embedding, langchain_pg_embedding.document AS langchain_pg_embedding_document, langchain_pg_embedding.cmetadata AS langchain_pg_embedding_cmetadata, langchain_pg_embedding.custom_id AS langchain_pg_embedding_custom_id, langchain_pg_embedding.uuid AS langchain_pg_embedding_uuid, langchain_pg_embedding.embedding <=> %(embedding_1)s AS distance
+FROM langchain_pg_embedding JOIN langchain_pg_collection ON langchain_pg_embedding.collection_id = langchain_pg_collection.uuid
+WHERE langchain_pg_embedding.collection_id = %(collection_id_1)s::UUID AND jsonb_path_match(langchain_pg_embedding.cmetadata, %(jsonb_path_match_1)s, %(jsonb_path_match_2)s) ORDER BY distance ASC
+ LIMIT %(param_1)s]
+[parameters: {'embedding_1': '[-0.008437538714847674,-0.018994991176018352,0.0088587135264848,-0.016411785416291288,-0.029257622293497897,0.024259677718466315,-0.03484521141855693 ... (32581 characters truncated) ... 0.03032459761374419,-0.02677268969411948,0.008802556636580491,0.006742309469365491,-0.014586693013659419,0.0040924168208004395,-0.013758382147199946]', 'collection_id_1': UUID('0b9464c0-e7d7-4b38-a519-8d579208b620'), 'jsonb_path_match_1': '$.topics == $value', 'jsonb_path_match_2': '{"value": ["food", "animals"]}', 'param_1': 10}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Error: (psycopg2.errors.UndefinedFunction) function jsonb_path_match(json, unknown, unknown) does not exist
+LINE 3: ...64c0-e7d7-4b38-a519-8d579208b620'::uuid::UUID AND jsonb_path...
+                                                             ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: SELECT langchain_pg_embedding.collection_id AS langchain_pg_embedding_collection_id, langchain_pg_embedding.embedding AS langchain_pg_embedding_embedding, langchain_pg_embedding.document AS langchain_pg_embedding_document, langchain_pg_embedding.cmetadata AS langchain_pg_embedding_cmetadata, langchain_pg_embedding.custom_id AS langchain_pg_embedding_custom_id, langchain_pg_embedding.uuid AS langchain_pg_embedding_uuid, langchain_pg_embedding.embedding <=> %(embedding_1)s AS distance
+FROM langchain_pg_embedding JOIN langchain_pg_collection ON langchain_pg_embedding.collection_id = langchain_pg_collection.uuid
+WHERE langchain_pg_embedding.collection_id = %(collection_id_1)s::UUID AND jsonb_path_match(langchain_pg_embedding.cmetadata, %(jsonb_path_match_1)s, %(jsonb_path_match_2)s) ORDER BY distance ASC
+ LIMIT %(param_1)s]
+[parameters: {'embedding_1': '[-0.008502459537737346,-0.018927092377341477,0.008874266768663075,-0.01648579059256328,-0.029127236444038022,0.0243288188418742,-0.034767480192517054 ... (32606 characters truncated) ... .03030579528405335,-0.026784150069013635,0.008811129621424931,0.0066890223304115325,-0.014577648595702764,0.004103909913866758,-0.013770896986613164]', 'collection_id_1': UUID('0b9464c0-e7d7-4b38-a519-8d579208b620'), 'jsonb_path_match_1': '$.topics == $value', 'jsonb_path_match_2': '{"value": ["ecom", "business"]}', 'param_1': 10}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+Error: (psycopg2.errors.UndefinedFunction) function jsonb_path_match(json, unknown, unknown) does not exist
+LINE 3: ...64c0-e7d7-4b38-a519-8d579208b620'::uuid::UUID AND jsonb_path...
+                                                             ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: SELECT langchain_pg_embedding.collection_id AS langchain_pg_embedding_collection_id, langchain_pg_embedding.embedding AS langchain_pg_embedding_embedding, langchain_pg_embedding.document AS langchain_pg_embedding_document, langchain_pg_embedding.cmetadata AS langchain_pg_embedding_cmetadata, langchain_pg_embedding.custom_id AS langchain_pg_embedding_custom_id, langchain_pg_embedding.uuid AS langchain_pg_embedding_uuid, langchain_pg_embedding.embedding <=> %(embedding_1)s AS distance
+FROM langchain_pg_embedding JOIN langchain_pg_collection ON langchain_pg_embedding.collection_id = langchain_pg_collection.uuid
+WHERE langchain_pg_embedding.collection_id = %(collection_id_1)s::UUID AND jsonb_path_match(langchain_pg_embedding.cmetadata, %(jsonb_path_match_1)s, %(jsonb_path_match_2)s) ORDER BY distance ASC
+ LIMIT %(param_1)s]
+[parameters: {'embedding_1': '[-0.0020112574534318223,0.0031962685702064306,-0.005874321321039887,-0.04093543061094576,-0.01494491097945556,0.029715875116635242,-0.000481524009193 ... (32567 characters truncated) ... 0.018032463238900853,-0.039746794786716486,0.01996036988317361,0.006646208920239923,-0.027121171312315704,-0.00932063812777193,-0.030527625184610867]', 'collection_id_1': UUID('0b9464c0-e7d7-4b38-a519-8d579208b620'), 'jsonb_path_match_1': '$.topics != $value', 'jsonb_path_match_2': '{"value": ["food", "animals"]}', 'param_1': 10}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+------------------------------------------------------------------------------------------------------------------------
+
+Process finished with exit code 0
