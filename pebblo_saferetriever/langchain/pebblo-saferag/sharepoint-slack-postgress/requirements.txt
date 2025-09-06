@@ -1,0 +1,14 @@
+python-dotenv==1.0.0
+unstructured[all-docs] # For Docx, PDF loading
+pymupdf # For PDF loading
+tiktoken # OpenAI tokenizer
+
+langchain-openai>=0.1.7 # For OpenAI LLM and OpenAIEmbeddings
+langchain-community>=0.2.9 # for PebbloSafeLoader, PebbloRetrievalQA
+
+o365 # Sharepoint
+azure-identity # Sharepoint
+slack_sdk>=3.0 # Slack
+
+psycopg2-binary # For Postgres VectorStore
+langchain-postgres # For Postgres VectorStore
